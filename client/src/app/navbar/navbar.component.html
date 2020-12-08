@@ -1,0 +1,20 @@
+<div>
+  <ul ngbNav #nav="ngbNav" class="nav-tabs" [activeId]="this.router.url">
+    <div *ngIf="!authService.loggedIn; else loggedIn">
+      <li ngbNavItem="/login">
+        <a ngbNavLink [routerLink]="['/login']">Log In</a>
+      </li>
+    </div>
+    <ng-template #loggedIn>
+      <li ngbNavItem>
+        <a ngbNavLink (click)="logOut()" [routerLink]="['/login']"> Log out </a>
+      </li>
+    </ng-template>
+    <li ngbNavItem='/register'>
+      <a ngbNavLink [routerLink]="['/register']">Sign Up</a>
+    </li>
+    <li ngbNavItem='/' class="nav-link--home">
+      <a ngbNavLink [routerLink]="['/']">Home</a>
+    </li>
+  </ul>
+</div>

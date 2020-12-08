@@ -1,0 +1,31 @@
+.register {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../../assets/background-image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  width: 40%;
+  background-color: rgba(73, 80, 87, .6);
+
+  &-header {
+    color: white;
+  }
+}
+
+.btn {
+  &--login {
+    color: black;
+    background-color: rgb(244, 185, 155);
+    width: 50%;
+  }
+}
+
+.icon {
+  background-color: rgb(244, 185, 155);
+  border: none;
+}

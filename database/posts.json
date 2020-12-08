@@ -1,0 +1,45 @@
+[{
+	"_id": {
+		"$oid": "5f6f66cceb2c3d39963fecb7"
+	},
+	"likes": [],
+	"content": "Koliko vremena treba da se spremi teorijski deo za kolokvijum?",
+	"topicId": {
+		"$oid": "5f6f6649eb2c3d39963fecad"
+	},
+	"username": "tijana",
+	"date": "Sat, 26 Sep 2020 16:05:32 GMT",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f66dfeb2c3d39963fecb8"
+	},
+	"likes": [
+		"tijana",
+		"natalija"
+	],
+	"content": "Oko nedelju dana po 3h dnevno.",
+	"topicId": {
+		"$oid": "5f6f6649eb2c3d39963fecad"
+	},
+	"username": "marija",
+	"date": "Sat, 26 Sep 2020 16:05:51 GMT",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f66f9eb2c3d39963fecb9"
+	},
+	"likes": [
+		"marija"
+	],
+	"content": "22. oktobra grupa 1 će imati čas vežbi u 14:00 umesto u 13:00 h.",
+	"topicId": {
+		"$oid": "5f6f6649eb2c3d39963fecad"
+	},
+	"username": "tijana",
+	"date": "Sat, 26 Sep 2020 16:06:17 GMT",
+	"__v": 0
+}]
+

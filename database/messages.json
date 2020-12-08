@@ -1,0 +1,31 @@
+[{
+	"_id": {
+		"$oid": "5f6f66ea6434630e9e406e86"
+	},
+	"sender": "marija",
+	"room": "skriptarnica",
+	"message": "Da li neko može da ostavi beleške sa časova vežbi iz Verovatnoće?",
+	"date": "Sat, 26 Sep 2020 16:06:02 GMT",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f676f6434630e9e406e87"
+	},
+	"sender": "marija",
+	"room": "skriptarnica",
+	"message": "Mogu ja danas popodne.",
+	"date": "Sat, 26 Sep 2020 16:08:15 GMT",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f677f6434630e9e406e88"
+	},
+	"sender": "marija",
+	"room": "skriptarnica",
+	"message": "Hvala puno :)",
+	"date": "Sat, 26 Sep 2020 16:08:31 GMT",
+	"__v": 0
+}]
+

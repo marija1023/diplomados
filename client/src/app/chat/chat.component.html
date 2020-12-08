@@ -1,0 +1,80 @@
+
+<div class="chat">
+  <div class="chat__wrapper" [ngClass]="{'hide': !showChat}">
+    <div class="room__wrapper" *ngIf="showRooms; else showMessages">
+      <div class="add-room">
+        <input
+          class="add-room__input"
+          placeholder="Add room"
+          [(ngModel)]="roomToAdd"
+          (keydown.enter)="addRoom()"
+        />
+
+        <fa-icon
+          class="icon__add"
+          [icon]="faPlus"
+          (click)="addRoom()"
+        >
+        </fa-icon>
+      </div>
+
+      <div class="rooms">
+        <div *ngFor="let room of rooms">
+          <div class="room">
+            <div class="room__name">
+              {{room.name}}
+            </div>
+
+            <fa-icon
+              class="icon__join"
+              [icon]="faArrowRight"
+              (click)="joinRoom(room)"
+            >
+            </fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #showMessages>
+      <div class="message__wrapper">
+        <div class="messages">
+          <div
+            *ngFor="let message of messageArray"
+            [ngClass]="{'message--my': message.user === authService.username}"
+            class="message"
+          >
+            <div class="message__user">
+              {{message.user}}
+            </div>
+            <div class="message__content">
+              {{message.message}}
+            </div>
+          </div>
+        </div>
+
+        <div class="send-message">
+          <input
+            class="send-message__input"
+            placeholder="Send message"
+            [(ngModel)]="messageText"
+            (keydown.enter)="sendMessage()"
+          />
+
+          <fa-icon
+            class="icon__send"
+            [icon]="faPaperPlane"
+            (click)="sendMessage()"
+          >
+          </fa-icon>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <fa-icon
+    class="icon__chat"
+    [icon]="faCommentAlt"
+    (click)="openChat()"
+  ></fa-icon>
+</div>

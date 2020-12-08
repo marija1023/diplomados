@@ -1,0 +1,96 @@
+<div class="topics">
+  <div class="card" *ngFor="let category of categories">
+    <div class="card-header">
+      <h3>{{category.name}}</h3>
+    </div>
+    <div class="card-body">
+      <ul class="list-group" *ngFor="let topic of category.categoryTopics">
+        <li class="list-group-item topic">
+          <a 
+            class="link"
+            [routerLink]="['/posts', topic._id]"
+            [ngClass]="{'isDisabled': !topic.name}"
+          >
+            <fa-icon class="icon" [icon]="faGraduationCap"></fa-icon>
+            {{topic.name}}
+          </a>
+          <span>
+            <span class="posts"> {{ topic.topicPosts }} </span>
+            <fa-icon class="icon--post" [icon]="faComment"></fa-icon>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div *ngIf="addingTopic[category._id]" class="add add--topic">
+        <input
+          class="add__input add__input--topic"
+          type="text"
+          placeholder="Add topic"
+          [(ngModel)]="newTopic"
+        >
+        <fa-icon
+          class="add__icon"
+          [icon]="faPlus"
+          (click)="saveTopic(category)"
+        >
+        </fa-icon>
+      </div>
+    
+      <button
+        *ngIf="!addingTopic[category._id]"
+        class="add__btn add__btn--topic"
+        (click)="handleAddTopicClicked(modalNotLoggedIn, category._id)"
+      >
+        <fa-icon [icon]="faPlus"></fa-icon>
+        Add new topic
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="addingCategory" class="add">
+    <input
+      class="add__input"
+      type="text"
+      placeholder="Add category"
+      [(ngModel)]="newCategory"
+    >
+    <fa-icon
+      class="add__icon"
+      [icon]="faPlus"
+      (click)="saveCategory()"
+    >
+    </fa-icon>
+  </div>
+
+  <button
+    *ngIf="!addingCategory"
+    class="add__btn"
+    (click)="handleAddCategoryClicked(modalNotLoggedIn)"
+  >
+    <fa-icon [icon]="faPlus"></fa-icon>
+    Add new category
+  </button>
+
+  <ng-template #modalNotLoggedIn let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <strong>You are not logged in!</strong> You must log in if you want to add category or topic.
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close()"
+        [routerLink]="['/login']"
+      >
+        Log In
+      </button>
+    </div>
+  </ng-template>
+</div>
+<app-chat *ngIf="authService.loggedIn"class="chat"></app-chat>

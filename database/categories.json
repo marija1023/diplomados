@@ -1,0 +1,22 @@
+[{
+	"_id": {
+		"$oid": "5f6f5aac6434630e9e406e73"
+	},
+	"name": "Treća godina",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f5ab26434630e9e406e74"
+	},
+	"name": "Druga godina",
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "5f6f5ac56434630e9e406e75"
+	},
+	"name": "Prva godina",
+	"__v": 0
+}]
+

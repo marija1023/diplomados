@@ -1,0 +1,161 @@
+<div class="posts">
+  <div class="sort-by">
+    <div class="sort-by__label">Sort By</div>
+    <div
+      class="sort-by__date"
+      [ngClass]="{'active': !likesSort}"
+      (click)="onSortByDateCliked()"
+    > 
+      Date 
+    </div> 
+    <div
+      class="sort-by__likes"
+      [ngClass]="{'active': likesSort}"
+      (click)="onSortByLikesCliked()"
+    >
+      Likes
+    </div>
+  </div>
+
+  <div *ngIf="likesSort; then sortByLikes else sortByDate"></div>
+  <ng-template #sortByLikes>
+    <div *ngFor="let post of posts | likesSort">
+      <div class="post">
+        <div class="post__top">
+          <div class="post__user">
+            <fa-icon class="post__icon" [icon]="faUser"></fa-icon>
+            {{post.username}}
+          </div>
+          <div class="post__date">
+            {{post.date}}
+          </div>
+        </div>
+        <div class="post__content">
+          {{post.content}}
+        </div>
+        <div class="post__utils">
+          <fa-icon
+            *ngIf="authService.username === post.username"
+            class="post__delete"
+            [icon]="faTrash"
+            (click)="deletePost(post._id)"
+          >
+          </fa-icon>
+          <span class="post__likes">
+            {{post.likes.length}}
+          </span>
+          <fa-icon
+            *ngIf="!isUserLikedPost(post); else userLikedPost"
+            class="post__like"
+            [ngClass]="{'post__like--disabled': !authService.loggedIn}"
+            [icon]="faHeart"
+            (click)="likePost(post)"
+          >
+          </fa-icon>
+          <ng-template #userLikedPost>
+            <fa-icon
+              class="post__unlike"
+              [icon]="faHeart"
+              (click)="unlikePost(post)"
+            >
+            </fa-icon>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #sortByDate>
+    <div *ngFor="let post of posts | dateSort">
+      <div class="post">
+        <div class="post__top">
+          <div class="post__user">
+            <fa-icon class="post__icon" [icon]="faUser"></fa-icon>
+            {{post.username}}
+          </div>
+          <div class="post__date">
+            {{post.date}}
+          </div>
+        </div>
+        <div class="post__content">
+          {{post.content}}
+        </div>
+        <div class="post__utils">
+          <fa-icon
+            *ngIf="authService.username === post.username"
+            class="post__delete"
+            [icon]="faTrash"
+            (click)="deletePost(post._id)"
+          >
+          </fa-icon>
+          <span class="post__likes">
+            {{post.likes.length}}
+          </span>
+          <fa-icon
+            *ngIf="!isUserLikedPost(post); else userLikedPost"
+            class="post__like"
+            [ngClass]="{'post__like--disabled': !authService.loggedIn}"
+            [icon]="faHeart"
+            (click)="likePost(post)"
+          >
+          </fa-icon>
+          <ng-template #userLikedPost>
+            <fa-icon
+              class="post__unlike"
+              [icon]="faHeart"
+              (click)="unlikePost(post)"
+            >
+            </fa-icon>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div *ngIf="addingPost" class="post-add">
+    <textarea
+      rows="5"
+      class="post-add__input"
+      type="text"
+      aria-describedby="post"
+      placeholder="Add post"
+      [(ngModel)]="postToAdd"
+    ></textarea>
+    <fa-icon
+      class="post-add__icon"
+      [icon]="faPlus"
+      (click)="addPost()"
+    >
+    </fa-icon>
+  </div>
+
+  <button
+    *ngIf="!addingPost"
+    class="post-add__btn"
+    (click)="handleAddPostClicked(modalNotLoggedIn)"
+  >
+    <fa-icon [icon]="faPlus"></fa-icon>
+    Add new post
+  </button>
+
+  <ng-template #modalNotLoggedIn let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <strong>You are not logged in!</strong> You must log in if you want to add post.
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close()"
+        [routerLink]="['/login']"
+      >
+        Log In
+      </button>
+    </div>
+  </ng-template>
+</div>
+<app-chat *ngIf="authService.loggedIn"class="chat"></app-chat>
